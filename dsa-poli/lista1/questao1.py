@@ -53,16 +53,6 @@ class Metodos:
         if current is not None:
             last.next = current.next
 
-    def imprimir(self):
-        if self.start is None:
-            print("A lista está vazia.")
-            return
-        
-        lista_str = []
-        current = self.start
-        while current is not None:
-            lista_str.append(str(current.dado))
-            current = current.next
-        print(" -> ".join(lista_str))
+    
 
 
