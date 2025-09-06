@@ -52,7 +52,3 @@ class Metodos:
         
         if current is not None:
             last.next = current.next
-
-    
-
-
