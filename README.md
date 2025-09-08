@@ -10,7 +10,7 @@ It will be used for university coursework (**dsa-poli**), general DSA practice (
 ```
 edstd/
 ├── dsa-poli/              # University coursework (Poli)
-├── dsa-studies/           # General DSA practice
+├── dsa-general/           # General DSA practice
 ├── leetcode-problems/     # LeetCode problem solutions
 └── README.md
 ```
