@@ -12,5 +12,12 @@ class LinkedList:
         self.tail = new_node
         self.lenght = 1
 
+
+    def printList(self):
+        temp = self.head
+        while temp is not None:
+            print(temp.value)
+            temp = temp.next
+
 my_ll = LinkedList(4);
 print(my_ll.head.value)
