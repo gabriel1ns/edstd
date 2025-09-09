@@ -34,7 +34,6 @@ class LinkedList:
         
     def pop(self):
 
-
         if self.lenght == 0:
             return None
         
@@ -52,6 +51,18 @@ class LinkedList:
             self.head = None
             self.tail = None
         return temp.value
+    
+    def prepend(self,value):
+        new_node = Node(value)
+
+        if self.lenght == 0:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head #we want new_node to point to head, to after change it to the head completely
+            self.head = new_node
+        self.lenght += 1
+        return True
 
 
 my_linked_list = LinkedList(1);
@@ -61,7 +72,11 @@ my_linked_list = LinkedList(1);
 my_linked_list.append(2)
 my_linked_list.printList()
 
-print(my_linked_list.pop())
-print(my_linked_list.pop())
-print(my_linked_list.pop())
 
+
+#print(my_linked_list.pop())
+#print(my_linked_list.pop())
+#print(my_linked_list.pop())
+
+my_linked_list.prepend(0)
+my_linked_list.printList()
