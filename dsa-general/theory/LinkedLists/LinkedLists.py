@@ -50,7 +50,7 @@ class LinkedList:
         if self.lenght == 0:
             self.head = None
             self.tail = None
-        return temp.value
+        return temp
     
     def prepend(self,value):
         new_node = Node(value)
@@ -63,20 +63,44 @@ class LinkedList:
             self.head = new_node
         self.lenght += 1
         return True
+    
+    def pop_first(self):
+        if self.lenght == 0:
+            return None
+        
+        temp = self.head
+        self.head = self.head.next
+        temp.next = None
+        self.lenght -=1
+
+        if self.lenght == 0:
+            self.tail = None
+        return temp
+    
+    def get(self,index):
+        if index < 0 or index >= self.lenght:
+            return None
+        
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        return temp
+    
+    def set_value(self, index, value):
+        temp = self.get(index)
+
+        if temp:
+            temp.value = value
+            return True
+        return False
 
 
-my_linked_list = LinkedList(1);
-#my_linked_list.printList()
+my_linked_list = LinkedList(11)
+my_linked_list.append(90)
+my_linked_list.append(45)
+my_linked_list.append(21)
 
-
-my_linked_list.append(2)
 my_linked_list.printList()
 
-
-
-#print(my_linked_list.pop())
-#print(my_linked_list.pop())
-#print(my_linked_list.pop())
-
-my_linked_list.prepend(0)
+my_linked_list.set_value(2,56)
 my_linked_list.printList()
