@@ -139,6 +139,8 @@ class LinkedList:
             temp.next = before
             before = temp
             temp = after
+
+
 my_linked_list = LinkedList(11)
 my_linked_list.append(90)
 my_linked_list.append(45)
