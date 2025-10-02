@@ -23,3 +23,12 @@ class Stack:
             new_node.next = self.top
             self.top = new_node
         
+class TaskManager:
+    def __init__(self):
+        self.task_stack = Stack()
+
+    def add_task(self):
+        self.task_stack.push()
+
+    def view_latest(self):
+        self.task_stack.peek()
