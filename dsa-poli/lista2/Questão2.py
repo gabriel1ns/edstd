@@ -9,18 +9,16 @@ class Deck:
         self._tamanho = 0
         self.cabeca = None
         self.cauda = None
-    
-    def esta_vazio(self):
-        return self._tamanho == 0
 
     def __len__(self):
         return self._tamanho
-        
+
     def inserir_frente(self, elemento):
         novo_no = NoDuplo(elemento)
-
-        if self.esta_vazio():
-            self.cabeca = self.cauda = novo_no
+        
+        if self._tamanho == 0:
+            self.cabeca = novo_no
+            self.cauda = novo_no
         else:
             novo_no.proximo = self.cabeca
             self.cabeca.anterior = novo_no
@@ -31,45 +29,63 @@ class Deck:
     def inserir_fundo(self, elemento):
         novo_no = NoDuplo(elemento)
 
-        if self.esta_vazio():
-            self.cabeca = self.cauda = novo_no
+        if self._tamanho == 0:
+            self.cabeca = novo_no
+            self.cauda = novo_no
         else:
             novo_no.anterior = self.cauda
             self.cauda.proximo = novo_no
             self.cauda = novo_no
-            
+        
         self._tamanho += 1
 
     def remover_frente(self):
-        if self.esta_vazio():
-            raise ValueError("O Deck está vazio.")
+        if self._tamanho == 0:
+            raise ValueError("O deck está vazio")
         
-        no_removido = self.cabeca
-        elemento_removido = no_removido.dado
+        elemento_removido = self.cabeca.dado
         
         if self._tamanho == 1:
-            self.cabeca = self.cauda = None
+            self.cabeca = None
+            self.cauda = None
         else:
             self.cabeca = self.cabeca.proximo
-            self.cabeca.anterior = None
-            no_removido.proximo = None 
+            if self.cabeca:
+                self.cabeca.anterior = None
 
         self._tamanho -= 1
+
         return elemento_removido
     
     def remover_fundo(self):
-        if self.esta_vazio():
-            raise ValueError("O Deck está vazio.")
+        if self._tamanho == 0:
+            raise ValueError("O deck está vazio")
         
-        no_removido = self.cauda
-        elemento_removido = no_removido.dado
+        elemento_removido = self.cauda.dado
         
         if self._tamanho == 1:
-            self.cabeca = self.cauda = None
+            self.cabeca = None
+            self.cauda = None
         else:
             self.cauda = self.cauda.anterior
-            self.cauda.proximo = None
-            no_removido.anterior = None
+            if self.cauda:
+                self.cauda.proximo = None
 
         self._tamanho -= 1
+
         return elemento_removido
+    
+def remover_duplicatas(fila: Deck):
+    if len(fila) <= 1:
+         return fila
+    
+    elementos_vistos = set() 
+    tamanho_original = len(fila)
+
+    for _ in range(tamanho_original):
+        elemento = fila.remover_frente()
+        if elemento not in elementos_vistos:
+            elementos_vistos.add(elemento)
+            fila.inserir_fundo(elemento)
+
+    return fila
