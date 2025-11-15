@@ -1,0 +1,21 @@
+Quicksort
+
+A complexidade do Quicksort pode ser descrita em 3 casos:
+    - Melhor caso: O(nlog(n)), pivô dividindo a lista em listas iguais.
+    - Caso médio: O(nlog(n)), pivô de certa forma balanceado, não vai existir disparidade no len() das listas menores
+    - Pior caso: O(n^2), pivô sendo o maior/menor elemento da lista, tal caso ocorre quando a lista já está ordenada ou todos os elementos são iguais.
+
+A estratégia do Quicksort mediana de 3 funciona da seguinte forma:
+    - 1o elemento: i: inicio
+    - 2o elemento: i: (inicio + fim) /2
+    - 3o elemento: i: fim
+
+Com a escolha desses elementos vamos criar puxar eles da lista original e ordenar:
+Por exemplo, se a nossa lista for: [8, 3, 1, 7, 0, 10, 2], os selecionados seriam: (8,7,2) - e ordenados ficariam: (2,7,8).
+A partir dessa lista ordenada (2,7,8), escolhemos a mediana dela como um pivô estatisticamente balanceado.
+
+Essa estratégia se mostra boa, uma vez que: evita o pior caso(lista já ordenada) e o pivô sempre vai balancear as listas menores do algoritmo.
+
+Outras maneiras que melhorar a complexidade temporal do quicksort são:
+    - Usar mais elementos ainda para formar a mediana estatistica, se aproximando cada vez mais da real.
+    - Uso de pilha no lugar da recursão, tornando o algoritmo iterativo.
