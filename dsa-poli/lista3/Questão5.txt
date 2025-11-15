@@ -1,0 +1,16 @@
+Nesse caso estamos analisando a complexidade de um algoritmo que vai além do ambito computacional, já que deve ser aplicado a entregas que acontecerão na vida real.
+Dessa forma, a complexidade que já é importante para o contexto virtual, caso não seja respeitada, tornará as entregas impraticaveis:
+    - O(n!) = péssimo do ponto de vista computacional e pior ainda aqui, tendo em vista que mesmo com um numero baixissimo de entregas teriamos tempos altos, por exemplo: 6! = 720
+    - O(n^2) = consideravelmente melhor que n!, mas ainda assim não seria o ideal, tendo em vista que não a partir da casa das dezenas perderá toda escalabilidade.
+    - O(nlog(n)) = já podemos falar de escalabilidade, tendo em vista que será viavel mesmo em um numero alto de entregas.
+    - O(n) = cenário ideal, mas de certa forma impossível/muito díficil de alcançar, significaria que cada entrega processada seria entregue quase que instantaneamente.
+
+Essa é apenas a analise fria da complexidade, todavia deve se considerar o contexto das entregas (numero e escalabilidade maxima do negocio):
+Por exemplo, deveriam ser feitas algumas perguntas de restrição, tais como:
+    - Quantas entregas por rota? (define n)
+    - Quanto tempo temos para calcular? (define limite de operações)
+    - Precisamos da solução ótima ou uma boa aproximação serve?
+    - Sistema rodará em que hardware?
+
+Dessa forma, seria escolhido o case para O(nlog(n)), que faria uma seleção ordenada das melhores rotas, dispensaria as rotas que não valem a pena e escolheria a melhor rota possivel dentre as que não foram descartadas.
+Isso para um negócio altamente escalavel e com MUITAS entregas por dia, talvez para um negócio menor a solução O(n^2) sirva e seja de implementação mais simples.
