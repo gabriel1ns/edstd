@@ -61,11 +61,26 @@ class BinarySearchTree:
                     return True
                 temp = temp.right
 
+    def contains(self,value):
+        temp = self.root
+
+        while temp is not None:
+            if value < temp.value:
+                temp = temp.left
+            elif value > temp.value:
+                temp = temp.right
+            else:
+                return True
+        
+        return False
+
 my_tree = BinarySearchTree()
 my_tree.insert(2)
 my_tree.insert(1)
 my_tree.insert(3)
 
+
 print(f"The root is {my_tree.root.value}")
 print(f"The element to the left is {my_tree.root.left.value}")
 print(f"The element to the right of the root is {my_tree.root.right.value}")
+print(f"The tree contains the number 7: {my_tree.contains(3)}")

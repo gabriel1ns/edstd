@@ -1,75 +1,56 @@
-class NoDuplo:
-    def __init__(self, dado):
-        self.dado = dado
-        self.proximo = None
-        self.anterior = None
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+        self.prev = None
 
-class Deck:
+class Deque:
     def __init__(self):
-        self._tamanho = 0
-        self.cabeca = None
-        self.cauda = None
-    
-    def esta_vazio(self):
-        return self._tamanho == 0
+        self.head = None
+        self.tail = None
+        self.size = 0
 
-    def __len__(self):
-        return self._tamanho
-        
-    def inserir_frente(self, elemento):
-        novo_no = NoDuplo(elemento)
-
-        if self.esta_vazio():
-            self.cabeca = self.cauda = novo_no
+    def add_first(self, data):
+        new_node = Node(data)
+        if self.is_empty():
+            self.head = self.tail = new_node
         else:
-            novo_no.proximo = self.cabeca
-            self.cabeca.anterior = novo_no
-            self.cabeca = novo_no
-            
-        self._tamanho += 1
-    
-    def inserir_fundo(self, elemento):
-        novo_no = NoDuplo(elemento)
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+        self.size += 1
 
-        if self.esta_vazio():
-            self.cabeca = self.cauda = novo_no
+    def add_last(self, data):
+        
+        new_node = Node(data)
+        if self.length == 0:
+            self.head = self.tail = new_node
         else:
-            novo_no.anterior = self.cauda
-            self.cauda.proximo = novo_no
-            self.cauda = novo_no
-            
-        self._tamanho += 1
+            self.tail.next = new_node
+            new_node.prev = self.tail
+            self.tail = new_node
+        self.size += 1
 
-    def remover_frente(self):
-        if self.esta_vazio():
-            raise ValueError("O Deck está vazio.")
-        
-        no_removido = self.cabeca
-        elemento_removido = no_removido.dado
-        
-        if self._tamanho == 1:
-            self.cabeca = self.cauda = None
+    def remove_first(self):
+        if self.length == 0:
+            return None
+        data = self.head.data
+        if self.size == 1:
+            self.head = self.tail = None
         else:
-            self.cabeca = self.cabeca.proximo
-            self.cabeca.anterior = None
-            no_removido.proximo = None 
+            self.head = self.head.next
+            self.head.prev = None
+        self.size -= 1
+        return data
 
-        self._tamanho -= 1
-        return elemento_removido
-    
-    def remover_fundo(self):
-        if self.esta_vazio():
-            raise ValueError("O Deck está vazio.")
-        
-        no_removido = self.cauda
-        elemento_removido = no_removido.dado
-        
-        if self._tamanho == 1:
-            self.cabeca = self.cauda = None
+    def remove_last(self):
+        if self.is_empty():
+            return None
+        data = self.tail.data
+        if self.size == 1:
+            self.head = self.tail = None
         else:
-            self.cauda = self.cauda.anterior
-            self.cauda.proximo = None
-            no_removido.anterior = None
-
-        self._tamanho -= 1
-        return elemento_removido
+            self.tail = self.tail.prev
+            self.tail.next = None
+        self.size -= 1
+        return data
