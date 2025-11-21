@@ -2,8 +2,6 @@ import time
 import random
 import matplotlib.pyplot as plt
 
-# ==================== ALGORITMOS DE ORDENAÇÃO ====================
-
 def bubble_sort(arr):
     n = len(arr)
     for i in range(n):
@@ -95,7 +93,6 @@ def bucket_sort(arr):
     
     return sorted_arr
 
-# ==================== TESTES ====================
 
 algoritmos = {
     'Bubble Sort': bubble_sort,
@@ -106,7 +103,7 @@ algoritmos = {
     'Bucket Sort': bucket_sort
 }
 
-# PARTE 1: LISTAS ALEATÓRIAS
+
 print("=" * 80)
 print("LISTAS ALEATÓRIAS")
 print("=" * 80)
@@ -133,7 +130,7 @@ for tamanho in tamanhos:
     
     print()
 
-# PARTE 2: LISTA DESCENDENTE (50.000 elementos)
+
 print("\n" + "=" * 80)
 print("LISTA DESCENDENTE (50.000 elementos)")
 print("=" * 80)
@@ -151,11 +148,11 @@ for nome, func in algoritmos.items():
     resultados_descendente[nome] = tempo
     print(f"{nome:<20} {tempo:.4f}s")
 
-# ==================== GRÁFICOS ====================
+
 
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
 
-# Gráfico 1: Listas Aleatórias
+
 for nome, tempos in resultados_aleatorios.items():
     ax1.plot(tamanhos, tempos, 'o-', label=nome, linewidth=2, markersize=6)
 
@@ -165,7 +162,6 @@ ax1.set_title('Listas Aleatórias', fontsize=12, fontweight='bold')
 ax1.legend()
 ax1.grid(True, alpha=0.3)
 
-# Gráfico 2: Lista Descendente
 nomes = list(resultados_descendente.keys())
 tempos = list(resultados_descendente.values())
 
@@ -181,45 +177,12 @@ plt.savefig('comparacao_ordenacao.png', dpi=300, bbox_inches='tight')
 print("\n✓ Gráfico salvo como 'comparacao_ordenacao.png'")
 plt.show()
 
-# ==================== DISCUSSÃO ====================
-
-print("\n" + "=" * 80)
-print("DISCUSSÃO DOS RESULTADOS")
-print("=" * 80)
-
-print("\n1. LISTAS ALEATÓRIAS:")
-print("\nAlgoritmos O(n²) - Bubble, Selection e Insertion Sort:")
-print("  - Muito lentos para listas grandes")
-print("  - Tempo cresce quadraticamente")
-print("  - Inviáveis para uso prático com grandes volumes")
-
-print("\nAlgoritmos O(n log n) - Merge, Quick e Bucket Sort:")
-print("  - Muito mais rápidos")
-print("  - Escaláveis para grandes volumes")
-print("  - Quick Sort geralmente é o mais rápido na prática")
 
 if resultados_aleatorios['Bubble Sort'][-1] > 0 and resultados_aleatorios['Quick Sort'][-1] > 0:
     speedup = resultados_aleatorios['Bubble Sort'][-1] / resultados_aleatorios['Quick Sort'][-1]
     print(f"\n  → Para 50.000 elementos: Quick Sort foi {speedup:.0f}x mais rápido que Bubble Sort")
 
-print("\n2. LISTA DESCENDENTE (Pior Caso):")
-print("\nBubble Sort:")
-print("  - Desempenho catastrófico")
-print("  - Pior caso: precisa fazer todas as trocas possíveis")
 
-print("\nInsertion Sort:")
-print("  - Muito afetado pela ordem reversa")
-print("  - Cada inserção move todos elementos anteriores")
-
-print("\nSelection Sort:")
-print("  - Desempenho similar ao caso aleatório")
-print("  - Não é afetado pela ordem inicial")
-
-print("\nMerge, Quick e Bucket Sort:")
-print("  - Desempenho consistente")
-print("  - Pouco afetados pela ordem inicial dos dados")
-
-print("\n3. COMPARAÇÃO: ALEATÓRIO vs DESCENDENTE:")
 
 for nome in ['Bubble Sort', 'Insertion Sort']:
     if resultados_aleatorios[nome][-1] > 0:
