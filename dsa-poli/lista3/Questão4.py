@@ -5,7 +5,7 @@ def hasPair(list, sum):
     sorted_list = sorted(list)
 
     left  = 0
-    right = len(sorted_list - 1)
+    right = len(sorted_list) -1
 
     while left < right:
         current_sum = sorted_list[left] + sorted_list[right]
@@ -13,9 +13,9 @@ def hasPair(list, sum):
         if current_sum == sum:
             return True, (sorted_list[left] + sorted_list[right])
         elif current_sum < sum:
-            esquerda +=1
+            left +=1
         else:
-            direita -=1
+            right -=1
         
     return False
 

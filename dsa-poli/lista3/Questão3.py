@@ -180,7 +180,7 @@ plt.show()
 
 if resultados_aleatorios['Bubble Sort'][-1] > 0 and resultados_aleatorios['Quick Sort'][-1] > 0:
     speedup = resultados_aleatorios['Bubble Sort'][-1] / resultados_aleatorios['Quick Sort'][-1]
-    print(f"\n  → Para 50.000 elementos: Quick Sort foi {speedup:.0f}x mais rápido que Bubble Sort")
+    print(f"\nPara 50.000 elementos: Quick Sort foi {speedup:.0f} mais rápido que Bubble Sort")
 
 
 
