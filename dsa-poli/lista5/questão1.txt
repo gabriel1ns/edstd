@@ -1,0 +1,25 @@
+Árvores Rubronegras
+
+Árvores Rubronegras são BSTs balanceadas que usam a coloração para manutenção do balancamento, com cada nó tendo um atributo adicional = cor.
+
+Regras:
+    1. Todo nó é vermelho ou preto
+    2. Root é sempre preto
+    3. Todas as leafes são pretas
+    4. Se um nó é vermelho -> os filhos são pretos
+    5. Qualquer caminho (R - L) tem o mesmo numero de nós pretos
+
+Aplicações práticas:
+    - Linux Kernel
+    - MYSQL - index variation
+    - Compiladores - tabela de simbolos
+
+                        BSTs conv               Árvores RB
+Balanceamento:        Não garantido           Garantido (cor)
+Altura máxima:        O(n) pior caso          O(log n) garantido
+Busca:                O(n) pior caso          O(log n) garantido
+Inserção:             O(n) pior caso          O(log n) garantido
+Remoção:              O(n) pior caso          O(log n) garantido
+Atributos extras:     Apenas valor/ponteiros  Cor adicional (1 bit)
+Após modificação:     Nenhuma operação        Rotações/recolorações
+
