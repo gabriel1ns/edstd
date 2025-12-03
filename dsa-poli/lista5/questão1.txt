@@ -22,4 +22,3 @@ Inserção:             O(n) pior caso          O(log n) garantido
 Remoção:              O(n) pior caso          O(log n) garantido
 Atributos extras:     Apenas valor/ponteiros  Cor adicional (1 bit)
 Após modificação:     Nenhuma operação        Rotações/recolorações
-
