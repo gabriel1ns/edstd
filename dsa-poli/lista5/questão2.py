@@ -6,14 +6,14 @@ class Node:
 
 def verify_binary_tree(root):
     if root is None:
-        return True
+        return True, "Empty tree is valid"
     
     visited = {}
     
     def dfs(node, parent=None):
         node_id = id(node)
         if node_id in visited:
-            return False
+            return False, "Cycle detected in structure"
         
         visited[node_id] = True
         
@@ -24,7 +24,7 @@ def verify_binary_tree(root):
             children += 1
         
         if children > 2:
-            return False
+            return False, f"Node {node.value} has more than 2 children"
         
         if node.left is not None:
             valid, msg = dfs(node.left, node)
@@ -41,6 +41,6 @@ def verify_binary_tree(root):
     valid, message = dfs(root)
     
     if valid:
-        return True
+        return True, "Valid binary tree"
     else:
-        return False
+        return False, message
